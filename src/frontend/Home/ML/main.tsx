@@ -10,23 +10,42 @@ import { OMap } from "../../../utils/Data/FormData/Map/Odor";
 import { Smap } from "../../../utils/Data/FormData/Map/Source";
 import { CMap } from "../../../utils/Data/FormData/Map/Color";
 import FetchMLData from "../../../utils/util/fetchML";
+import { motion } from "motion/react";
+import { Spinner } from "../../../components/ui/spinner";
 
 export default function MachineLearning(){
     const [data, setData] = useState<ML>(MLData)
+    const [isLoading, setIsloading] = useState<boolean>(false)
     function handleSubmitForm(e: React.FormEvent){
         e.preventDefault();
-        FetchMLData(data)
+        FetchMLData(data, setIsloading)
     }
     return(
         <section className="grid lg:grid-cols-2 gap-3">
-            <div className="image rounded-sm flex w-full relative">
+            <motion.div 
+                className="image rounded-sm flex w-full relative"
+                initial={{ opacity: 0, y:20 }}
+                animate={{ opacity: 1, y:10 }}
+                transition={{
+                    duration: 0.4,
+                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                }}
+            >
                 <img src="/images/water.jpeg" alt="" className="h-screen brightness-50 rounded-sm"/>
                 <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50">
                     <p className="font-bold text-2xl">Clean Water Prediction System</p>
                     <p>Clean water is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
                 </div>
-            </div>
-            <div className="flex flex-col justify-center items-center px-10">
+            </motion.div>
+            <motion.div 
+                className="flex flex-col justify-center items-center px-10"
+                initial={{ opacity: 0, x:10 }}
+                animate={{ opacity: 1, x:0 }}
+                transition={{
+                    duration: 0.4,
+                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                }}
+            >
                 <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-3 w-full">
                     <p className="font-medium text-xl">Prediksi Kualitas Air</p>
                     <div className="flex flex-col w-full gap-3">
@@ -97,9 +116,17 @@ export default function MachineLearning(){
                         </SelectContent>
                         </Select>
                     </div>
-                    <Button variant="default" className="grid  items-center w-full">Prediksi Sekarang!</Button>
+                    {isLoading ? (
+                        <Button variant="outline" disabled size="sm" className="flex gap-3 justify-center items-center w-full">
+                            <Spinner />
+                            Please wait
+                        </Button>
+                    ): (
+                        <Button variant="default" className="grid items-center w-full">Prediksi Sekarang!</Button>
+                    )
+                    }
                 </form>
-            </div>
+            </motion.div>
         </section>
     )
 }

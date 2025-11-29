@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Button } from "../../../components/ui/button";
 import { Checkbox } from "../../../components/ui/checkbox";
 import { Input } from "../../../components/ui/input";
@@ -7,14 +8,30 @@ import { Calendar28 } from "../../Calendar";
 export default function DataScience(){
     return(
         <section className="grid lg:grid-cols-2 gap-3">
-            <div className="image rounded-sm flex w-full relative">
+            <motion.div 
+                className="image rounded-sm flex w-full relative"
+                initial={{ opacity: 0, y:20 }}
+                animate={{ opacity: 1, y:10 }}
+                transition={{
+                    duration: 0.4,
+                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                }}
+            >
                 <img src="/images/netflix.jpg" alt="" className="h-screen brightness-50 rounded-sm"/>
                 <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50">
                     <p className="font-bold text-2xl">Movie Recommendation System</p>
                     <p>Movie Recommendation is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
                 </div>
-            </div>
-            <div className="flex flex-col justify-center items-center px-10">
+            </motion.div>
+            <motion.div 
+                className="flex flex-col justify-center items-center px-10"
+                initial={{ opacity: 0, x:10 }}
+                animate={{ opacity: 1, x:0 }}
+                transition={{
+                    duration: 0.4,
+                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                }}
+            >
                 <div className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-3 w-full">
                     <p className="font-medium text-xl">Prediksi Preferensi Konten</p>
                     <div className="flex flex-col w-full gap-3">
@@ -54,7 +71,7 @@ export default function DataScience(){
                     </div>
                 <Button variant="default" className="grid  items-center w-full">Prediksi Sekarang!</Button>
                 </div>
-            </div>
+            </motion.div>
         </section>
     )
 }
