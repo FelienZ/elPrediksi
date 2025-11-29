@@ -57,6 +57,6 @@ export default function MachineLearning(){
                         <MLResult prediction={result.prediction} setResult={setResult} setData={setData}/>
                     </motion.div>
                 )}
-\        </section>
+        </section>
     )
 }
