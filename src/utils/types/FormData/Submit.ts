@@ -1,3 +1,4 @@
+// inputData
 export type MLSubmit = {
     pH: number,
     Odor: number,
