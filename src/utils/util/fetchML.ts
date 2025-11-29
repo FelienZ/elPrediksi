@@ -2,9 +2,8 @@ import { toast } from "sonner"
 import type { MLSubmit } from "../types/FormData/Submit"
 import type { ML } from "../types/FormData/MachineLearning"
 import axios from "axios"
-import type { SetStateAction } from "react"
 
-export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> React.Dispatch<SetStateAction<boolean>>){
+export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> void){
     setIsLoading(true)
     const payload: MLSubmit = {
             pH: data.pH,
