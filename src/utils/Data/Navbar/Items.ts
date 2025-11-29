@@ -8,6 +8,6 @@ export const NavbarItems: NavbarTypes[] = [
     },
     {
         icon: faDroplet,
-        title: 'Water Quality'
+        title: 'Water Quality Checker'
     }
 ]
