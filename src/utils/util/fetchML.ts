@@ -1,6 +1,7 @@
 import { toast } from "sonner"
 import type { MLSubmit } from "../types/FormData/Submit"
 import type { ML } from "../types/FormData/MachineLearning"
+import axios from "axios"
 
 export default async function FetchMLData(data: ML){
     const payload: MLSubmit = {
@@ -11,12 +12,7 @@ export default async function FetchMLData(data: ML){
             Turbidity: data.Turbidity.value,
         }
         try {
-            const response = await fetch('http://localhost:5000/predict', {
-                method: 'POST',
-                headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify(payload)
-            })
-            const result = await response.json()
+            const {data: result} = await axios.post('http://localhost:5000/predict', payload)
             console.log(result)
         } catch (error) {
             toast('Gagal Mendapatkan Prediksi')
