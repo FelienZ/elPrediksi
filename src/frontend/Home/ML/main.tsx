@@ -12,6 +12,7 @@ import { CMap } from "../../../utils/Data/FormData/Map/Color";
 
 export default function MachineLearning(){
     const [data, setData] = useState<ML>(MLData)
+    console.log('cek: ', data)
     return(
         <section className="grid lg:grid-cols-2 gap-3">
             <div className="image rounded-sm flex w-full relative">
@@ -30,7 +31,10 @@ export default function MachineLearning(){
                     </div>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="turbid">Kekeruhan</Label>
-                        <Select>
+                        <Select onValueChange={(val) => {
+                            const selected = TMap.find(t=> t.label.toString().toLowerCase() === val.toLowerCase())
+                            setData({...data, Turbidity: selected!})
+                        }}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Tingkat Kekeruhan" />
                         </SelectTrigger>
@@ -43,7 +47,10 @@ export default function MachineLearning(){
                     </div>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="odor">Odor</Label>
-                        <Select>
+                        <Select  onValueChange={(val) => {
+                            const selected = OMap.find(o=> o.label.toString().toLowerCase() === val.toLowerCase())
+                            setData({...data, Odor: selected!})
+                        }}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Aroma Air" />
                         </SelectTrigger>
@@ -56,7 +63,10 @@ export default function MachineLearning(){
                     </div>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="soruce">Sumber Air</Label>
-                        <Select>
+                        <Select  onValueChange={(val) => {
+                            const selected = Smap.find(s=> s.label.toString().toLowerCase() === val.toLowerCase())
+                            setData({...data, Source: selected!})
+                        }}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Pilih Sumber Air" />
                         </SelectTrigger>
@@ -69,7 +79,10 @@ export default function MachineLearning(){
                     </div>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="soruce">Warna Air</Label>
-                        <Select>
+                        <Select  onValueChange={(val) => {
+                            const selected = CMap.find(c=> c.label.toString().toLowerCase() === val.toLowerCase())
+                            setData({...data, Color: selected!})
+                        }}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Pilih Warna Air" />
                         </SelectTrigger>
