@@ -10,15 +10,15 @@ export default function DataScience(){
         <section className="grid lg:grid-cols-2 gap-3">
             <motion.div 
                 className="image rounded-sm flex w-full relative"
-                initial={{ opacity: 0, y:20 }}
-                animate={{ opacity: 1, y:10 }}
+                initial={{ opacity: 0, y:20, scale:0 }}
+                animate={{ opacity: 1, y:10, scale:0.9 }}
                 transition={{
-                    duration: 0.4,
-                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                    duration: 0.6,
+                    scale: { type: "spring", visualDuration: 0.6, bounce: 0.1 },
                 }}
             >
                 <img src="/images/netflix.jpg" alt="" className="h-screen brightness-50 rounded-sm"/>
-                <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50">
+                <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50 rounded-b-sm">
                     <p className="font-bold text-2xl">Movie Recommendation System</p>
                     <p>Movie Recommendation is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
                 </div>
@@ -36,7 +36,7 @@ export default function DataScience(){
                     <p className="font-medium text-xl">Prediksi Preferensi Konten</p>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="age">Usia Anda</Label>
-                        <Input type="text" id="age" placeholder="Masukkan Usia Anda" />
+                         <Input type="text" id="age" placeholder="Masukkan Usia Anda" />
                     </div>
                     <div className="w-full">
                         <Calendar28/>
