@@ -26,14 +26,14 @@ export default function MachineLearning(){
                     scale: { type: "spring", visualDuration: 0.6, bounce: 0.1 },
                 }}
             >
-                <img src="/images/water.jpeg" alt="" className="h-screen brightness-50 rounded-sm"/>
+                <img src="/images/water.jpeg" alt="" className="lg:h-screen h-[60vh] w-screen brightness-50 rounded-sm"/>
                 <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50 rounded-b-sm">
-                    <p className="font-bold text-2xl">Clean Water Prediction System</p>
-                    <p>Clean water is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
+                    <p className="font-bold text-lg md:text-2xl">Clean Water Prediction System</p>
+                    <p className="max-sm:text-sm">Clean water is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
                 </div>
             </motion.div>
             <motion.div 
-                className="flex flex-col justify-center items-center px-10"
+                className="flex flex-col justify-center items-center px-5 md:px-10"
                 initial={{ opacity: 0, x:10 }}
                 animate={{ opacity: 1, x:0 }}
                 transition={{

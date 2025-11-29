@@ -13,21 +13,21 @@ import type { MLProps } from "../../../utils/types/FormData/FormProps"
 export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLProps){
     return(
         <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-4 w-full">
-                    <p className="font-medium text-xl">Prediksi Kualitas Air</p>
+                    <p className="font-medium text-lg md:text-xl">Prediksi Kualitas Air</p>
                     <div className="flex flex-col w-full gap-2">
-                        <Label htmlFor="pH">pH</Label>
-                        <Input type="text" onChange={(e)=> setData({...data, pH: Number(e.target.value)})} id="pH" placeholder="Masukkan data pH" />
-                        <p className="text-muted-foreground text-sm px-2">
+                        <Label htmlFor="pH" className="max-sm:text-sm">pH</Label>
+                        <Input className="max-sm:text-xs" type="text" onChange={(e)=> setData({...data, pH: Number(e.target.value)})} id="pH" placeholder="Masukkan data pH" />
+                        <p className="text-muted-foreground text-sm px-2 max-sm:text-xs">
                             pH yang valid adalah {`0 < pH <= 14`}.
                         </p>
                     </div>
                     <div className="flex flex-col w-full gap-3">
-                        <Label htmlFor="turbid">Kekeruhan</Label>
+                        <Label htmlFor="turbid" className="max-sm:text-sm">Kekeruhan</Label>
                         <Select onValueChange={(val) => {
                             const selected = TMap.find(t=> t.label.toString().toLowerCase() === val.toLowerCase())
                             setData({...data, Turbidity: selected!})
                         }}>
-                        <SelectTrigger className="w-full">
+                        <SelectTrigger className="w-full max-sm:text-xs">
                             <SelectValue placeholder="Tingkat Kekeruhan" />
                         </SelectTrigger>
                         <SelectContent>
@@ -38,13 +38,13 @@ export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLP
                         </Select>
                     </div>
                     <div className="flex flex-col w-full gap-3">
-                        <Label htmlFor="odor">Odor</Label>
+                        <Label htmlFor="odor" className="max-sm:text-sm">Aroma</Label>
                         <Select  onValueChange={(val) => {
                             const selected = OMap.find(o=> o.label.toString().toLowerCase() === val.toLowerCase())
                             setData({...data, Odor: selected!})
                         }}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Aroma Air" />
+                        <SelectTrigger className="w-full max-sm:text-xs">
+                            <SelectValue placeholder="Tingkat Aroma Air" />
                         </SelectTrigger>
                         <SelectContent>
                             {OMap.map(i=>(
@@ -54,12 +54,12 @@ export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLP
                         </Select>
                     </div>
                     <div className="flex flex-col w-full gap-3">
-                        <Label htmlFor="soruce">Sumber Air</Label>
+                        <Label htmlFor="soruce" className="max-sm:text-sm">Sumber Air</Label>
                         <Select  onValueChange={(val) => {
                             const selected = Smap.find(s=> s.label.toString().toLowerCase() === val.toLowerCase())
                             setData({...data, Source: selected!})
                         }}>
-                        <SelectTrigger className="w-full">
+                        <SelectTrigger className="w-full max-sm:text-xs">
                             <SelectValue placeholder="Pilih Sumber Air" />
                         </SelectTrigger>
                         <SelectContent>
@@ -70,12 +70,12 @@ export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLP
                         </Select>
                     </div>
                     <div className="flex flex-col w-full gap-3">
-                        <Label htmlFor="soruce">Warna Air</Label>
+                        <Label htmlFor="soruce" className="max-sm:text-sm">Warna Air</Label>
                         <Select  onValueChange={(val) => {
                             const selected = CMap.find(c=> c.label.toString().toLowerCase() === val.toLowerCase())
                             setData({...data, Color: selected!})
                         }}>
-                        <SelectTrigger className="w-full">
+                        <SelectTrigger className="w-full max-sm:text-xs">
                             <SelectValue placeholder="Pilih Warna Air" />
                         </SelectTrigger>
                         <SelectContent>

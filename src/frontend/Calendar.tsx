@@ -42,7 +42,7 @@ export function Calendar28() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Label htmlFor="date">
+      <Label htmlFor="date" className="max-sm:text-sm">
         Movie Release Date
       </Label>
       <div className="relative flex gap-2">
@@ -50,7 +50,7 @@ export function Calendar28() {
           id="date"
           value={value}
           placeholder="June 01, 2025"
-          className="bg-background pr-10"
+          className="bg-background pr-10 max-sm:text-xs"
           onChange={(e) => {
             const date = new Date(e.target.value)
             setValue(e.target.value)
