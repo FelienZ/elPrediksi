@@ -32,21 +32,31 @@ export default function MachineLearning(){
                     <p className="max-sm:text-sm">Clean water is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
                 </div>
             </motion.div>
-            <motion.div 
-                className="flex flex-col justify-center items-center px-5 md:px-10"
-                initial={{ opacity: 0, x:10 }}
-                animate={{ opacity: 1, x:0 }}
-                transition={{
-                    duration: 0.4,
-                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-                }}
-            >
                 {isNaN(result.prediction) ? (
-                    <MLForm handleSubmitForm={handleSubmitForm} data={data} isLoading={isLoading} setData={setData}/>
+                    <motion.div
+                        className="flex flex-col justify-center items-center px-5 md:px-10"
+                        initial={{ opacity: 0, x:10 }}
+                        animate={{ opacity: 1, x:0 }}
+                        transition={{
+                            duration: 0.4,
+                            scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                        }}
+                    >
+                        <MLForm handleSubmitForm={handleSubmitForm} data={data} isLoading={isLoading} setData={setData}/>
+                    </motion.div>
                 ) : (
-                    <MLResult prediction={result.prediction} setResult={setResult} setData={setData}/>
+                    <motion.div
+                        className="flex flex-col justify-center items-center px-5 md:px-10"
+                        initial={{ opacity: 0, x:10 }}
+                        animate={{ opacity: 1, x:0 }}
+                        transition={{
+                            duration: 0.4,
+                            scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                        }}
+                    >
+                        <MLResult prediction={result.prediction} setResult={setResult} setData={setData}/>
+                    </motion.div>
                 )}
-            </motion.div>
-        </section>
+\        </section>
     )
 }

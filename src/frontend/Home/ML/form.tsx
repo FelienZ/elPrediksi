@@ -12,7 +12,7 @@ import type { MLProps } from "../../../utils/types/FormData/FormProps"
 // handleSubmitForm:(v: React.FormEvent)=> void, setData:(v: ML)=> Dispatch<SetStateAction<ML>> , data: ML, isLoading: boolean
 export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLProps){
     return(
-        <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-4 w-full">
+        <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col border bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-4 w-full">
                     <p className="font-medium text-lg md:text-xl">Prediksi Kualitas Air</p>
                     <div className="flex flex-col w-full gap-2">
                         <Label htmlFor="pH" className="max-sm:text-sm">pH</Label>
