@@ -12,7 +12,6 @@ export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> 
         toast("Pastikan Data Valid!")
         return setIsLoading(false)
     }
-    console.log(baseUrl)
     const payload: MLSubmit = {
             pH: data.pH,
             Color: data.Color.value,
