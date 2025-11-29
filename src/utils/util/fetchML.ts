@@ -2,9 +2,15 @@ import { toast } from "sonner"
 import type { MLSubmit } from "../types/FormData/Submit"
 import type { ML } from "../types/FormData/MachineLearning"
 import axios from "axios"
+import type { Dispatch, SetStateAction } from "react"
+import type { result } from "../types/FormData/ResultProps"
 
-export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> void){
+export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> void, setResult: Dispatch<SetStateAction<result>>){
     setIsLoading(true)
+    if(data.Color.value === -1 || data.Odor.value === -1 || data.Source.value === -1 || data.Turbidity.value === -1 || isNaN(data.pH) || data.pH <= 0 || data.pH > 14){
+        toast("Pastikan Data Valid!")
+        return setIsLoading(false)
+    }
     const payload: MLSubmit = {
             pH: data.pH,
             Color: data.Color.value,
@@ -14,7 +20,7 @@ export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> 
         }
         try {
             const {data: result} = await axios.post('http://localhost:5000/predict', payload)
-            console.log(result)
+            setResult(result)
             setIsLoading(false)
         } catch (error) {
             toast('Gagal Mendapatkan Prediksi')
