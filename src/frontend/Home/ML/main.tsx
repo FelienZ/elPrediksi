@@ -9,10 +9,14 @@ import { TMap } from "../../../utils/Data/FormData/Map/Turbidity";
 import { OMap } from "../../../utils/Data/FormData/Map/Odor";
 import { Smap } from "../../../utils/Data/FormData/Map/Source";
 import { CMap } from "../../../utils/Data/FormData/Map/Color";
+import FetchMLData from "../../../utils/util/fetchML";
 
 export default function MachineLearning(){
     const [data, setData] = useState<ML>(MLData)
-    console.log('cek: ', data)
+    function handleSubmitForm(e: React.FormEvent){
+        e.preventDefault();
+        FetchMLData(data)
+    }
     return(
         <section className="grid lg:grid-cols-2 gap-3">
             <div className="image rounded-sm flex w-full relative">
@@ -23,8 +27,8 @@ export default function MachineLearning(){
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center px-10">
-                <div className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-3 w-full">
-                    <p className="font-medium text-xl">Prediksi Kualitas Air Minum</p>
+                <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-3 w-full">
+                    <p className="font-medium text-xl">Prediksi Kualitas Air</p>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="pH">pH</Label>
                         <Input type="number" onChange={(e)=> setData({...data, pH: e.target.valueAsNumber})} id="pH" placeholder="Masukkan data pH" />
@@ -93,8 +97,8 @@ export default function MachineLearning(){
                         </SelectContent>
                         </Select>
                     </div>
-                <Button variant="default" className="grid  items-center w-full">Prediksi Sekarang!</Button>
-                </div>
+                    <Button variant="default" className="grid  items-center w-full">Prediksi Sekarang!</Button>
+                </form>
             </div>
         </section>
     )
