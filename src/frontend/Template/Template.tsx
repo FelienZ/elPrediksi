@@ -1,3 +1,4 @@
+import { Toaster } from "../../components/ui/sonner";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router";
 
@@ -7,6 +8,7 @@ export default function Template(){
             <Navbar/>
                 <main className="pt-20 pb-5 px-5">
                     <Outlet/>
+                    <Toaster/>
                 </main>
         </section>
     )
