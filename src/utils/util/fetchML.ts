@@ -4,7 +4,7 @@ import type { ML } from "../types/FormData/MachineLearning"
 import axios from "axios"
 import type { Dispatch, SetStateAction } from "react"
 import type { result } from "../types/FormData/ResultProps"
-const baseUrl = import.meta.env.VITE_API_URL;
+const devUrl = import.meta.env.VITE_API_URL;
 
 export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> void, setResult: Dispatch<SetStateAction<result>>){
     setIsLoading(true)
@@ -20,7 +20,7 @@ export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> 
             Turbidity: data.Turbidity.value,
         }
         try {
-            const {data: result} = await axios.post(`${baseUrl}/predict`, payload)
+            const {data: result} = await axios.post('http://localhost:5000/predict', payload)
             setResult(result)
             setIsLoading(false)
         } catch (error) {
