@@ -1,10 +1,9 @@
 import { toast } from "sonner"
-import type { MLSubmit } from "../types/FormData/Submit"
-import type { ML } from "../types/FormData/MachineLearning"
+import type { MLSubmit } from "../types/ML/Submit"
+import type { ML } from "../types/ML/MachineLearning"
 import axios from "axios"
 import type { Dispatch, SetStateAction } from "react"
-import type { result } from "../types/FormData/ResultProps"
-const devUrl = import.meta.env.VITE_API_URL;
+import type { result } from "../types/ML/ResultProps"
 
 export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> void, setResult: Dispatch<SetStateAction<result>>){
     setIsLoading(true)
