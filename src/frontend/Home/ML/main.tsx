@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { MLData } from "../../../utils/Data/FormData/MachineLearning";
-import type { ML } from "../../../utils/types/FormData/MachineLearning";
+import type { ML } from "../../../utils/types/ML/MachineLearning";
 import FetchMLData from "../../../utils/util/fetchML";
 import { motion } from "motion/react";
 import MLForm from "./form";
 import MLResult from "./result";
-import type { result } from "../../../utils/types/FormData/ResultProps";
+import type { result } from "../../../utils/types/ML/ResultProps";
 
 export default function MachineLearning(){
     const [data, setData] = useState<ML>(MLData)
@@ -16,9 +16,9 @@ export default function MachineLearning(){
         FetchMLData(data, setIsloading, setResult)
     }
     return(
-        <section className="grid lg:grid-cols-2 gap-3">
+        <section className="grid lg:grid-cols-2 place-content-center min-h-screen gap-3">
             <motion.div 
-                className="image rounded-sm flex w-full relative"
+                className="image rounded-sm w-full"
                 initial={{ opacity: 0, y:20, scale:0}}
                 animate={{ opacity: 1, y:10, scale:0.9}}
                 transition={{
@@ -26,7 +26,7 @@ export default function MachineLearning(){
                     scale: { type: "spring", visualDuration: 0.6, bounce: 0.1 },
                 }}
             >
-                <img src="/images/water.jpeg" alt="" className="lg:h-screen h-[60vh] w-screen brightness-50 rounded-sm"/>
+                <img src="/images/water.jpeg" alt="" className="lg:h-[80vh] h-[60vh] w-screen brightness-50 rounded-sm"/>
                 <div className="text absolute text-white p-4 w-full self-end bg-neutral-900/50 rounded-b-sm">
                     <p className="font-bold text-lg md:text-2xl">Clean Water Prediction System</p>
                     <p className="max-sm:text-sm">Clean water is Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, minus.</p>
@@ -42,7 +42,7 @@ export default function MachineLearning(){
                             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
                         }}
                     >
-                        <MLForm handleSubmitForm={handleSubmitForm} data={data} isLoading={isLoading} setData={setData}/>
+                        <MLForm handleSubmitForm={handleSubmitForm} setIsLoading={setIsloading} data={data} isLoading={isLoading} setData={setData}/>
                     </motion.div>
                 ) : (
                     <motion.div

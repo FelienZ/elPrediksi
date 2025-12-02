@@ -1,7 +1,7 @@
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button } from "../../../components/ui/button"
-import type { MLResultProps } from "../../../utils/types/FormData/ResultProps"
+import type { MLResultProps } from "../../../utils/types/ML/ResultProps"
 import { MLData } from "../../../utils/Data/FormData/MachineLearning"
 
 export default function MLResult({prediction, setResult, setData}: MLResultProps){

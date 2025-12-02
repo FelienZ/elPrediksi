@@ -7,7 +7,7 @@ import { CMap } from "../../../utils/Data/FormData/Map/Color"
 import { OMap } from "../../../utils/Data/FormData/Map/Odor"
 import { Smap } from "../../../utils/Data/FormData/Map/Source"
 import { TMap } from "../../../utils/Data/FormData/Map/Turbidity"
-import type { MLProps } from "../../../utils/types/FormData/FormProps"
+import type { MLProps } from "../../../utils/types/ML/FormProps"
 
 // handleSubmitForm:(v: React.FormEvent)=> void, setData:(v: ML)=> Dispatch<SetStateAction<ML>> , data: ML, isLoading: boolean
 export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLProps){
@@ -71,7 +71,7 @@ export default function MLForm({handleSubmitForm, setData, data, isLoading}: MLP
                     </div>
                     <div className="flex flex-col w-full gap-3">
                         <Label htmlFor="soruce" className="max-sm:text-sm">Warna Air</Label>
-                        <Select  onValueChange={(val) => {
+                        <Select onValueChange={(val) => {
                             const selected = CMap.find(c=> c.label.toString().toLowerCase() === val.toLowerCase())
                             setData({...data, Color: selected!})
                         }}>
