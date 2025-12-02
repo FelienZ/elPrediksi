@@ -1,4 +1,4 @@
-import type { ML } from "../../types/FormData/MachineLearning";
+import type { ML } from "../../types/ML/MachineLearning";
 import type { OptionType } from "../../types/OptionTypes";
 
 const defaultOption: OptionType = {
