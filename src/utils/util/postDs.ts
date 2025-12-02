@@ -4,11 +4,11 @@ import type { Dispatch, SetStateAction } from "react";
 import type { Recommendations } from "../types/DS/Recommend";
 import { nanoid } from 'nanoid'
 const api_key = import.meta.env.VITE_API_KEY
-
+const api_url = import.meta.env.VITE_API2_URL;
 export default async function PostDSData(query: DS[], setIsLoading: Dispatch<SetStateAction<boolean>>, setRecommendations: Dispatch<SetStateAction<Recommendations[]>>, setQuery: Dispatch<SetStateAction<DS[]>>){
     setIsLoading(true)
     try {
-        const {data: response} = await axios.post('http://localhost:5000/recommend', query)
+        const {data: response} = await axios.post(`${api_url}/recommend`, query)
         const MovieData = await Promise.all(response.recommendations?.map(async(r: Recommendations) => {
             return{
                 title: r.title,
