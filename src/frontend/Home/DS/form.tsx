@@ -29,6 +29,9 @@ export default function DSForm({open, setOpen, value, setValue, list, isLoading,
         e.preventDefault();
         PostDSData(query, setIsLoading, setRecommendations, setQuery)
     }
+    function checkNumber(v: number): number{
+        return isNaN(v) ? 0 : v
+    }
     return(
         <form onSubmit={(e)=> handleSubmitForm(e)} className="flex flex-col bg-card text-card-foreground items-center drop-shadow-sm p-4 rounded-sm gap-4 w-full">
                     <p className="font-medium text-lg md:text-xl">Prediksi Preferensi Konten</p>
@@ -44,7 +47,7 @@ export default function DSForm({open, setOpen, value, setValue, list, isLoading,
                     </div>
                     <div className="w-full flex flex-col gap-2">
                         <Label htmlFor="rating" className="max-sm:text-sm">Rating Film</Label>
-                        <Input value={value.rating === 0 ? '' : Number(value.rating)} onChange={(e)=>setValue({...value, rating:Number(e.target.value)})} placeholder="Masukkan Rating 1-10" id="rating"/>
+                        <Input value={value.rating === 0 ? '' : Number(value.rating)} onChange={(e)=>setValue({...value, rating: checkNumber(Number(e.target.value))})} placeholder="Masukkan Rating 1-10" id="rating"/>
                         <div className="flex items-center justify-between">
                             <p className="text-muted-foreground text-sm px-2 max-sm:text-xs">
                                 Rating yang valid adalah 1~10.
