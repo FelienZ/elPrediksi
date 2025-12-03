@@ -23,6 +23,7 @@ export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> 
             setResult(result)
             setIsLoading(false)
         } catch (error) {
+            console.error(error)
             toast('Gagal Mendapatkan Prediksi')
             setIsLoading(false)
         }finally{

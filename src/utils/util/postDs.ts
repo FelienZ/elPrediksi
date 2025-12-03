@@ -3,6 +3,7 @@ import type { DS } from "../types/DS/DataScience";
 import type { Dispatch, SetStateAction } from "react";
 import type { Recommendations } from "../types/DS/Recommend";
 import { nanoid } from 'nanoid'
+import { toast } from "sonner";
 const api_key = import.meta.env.VITE_API_KEY
 const api_url = import.meta.env.VITE_API2_URL;
 export default async function PostDSData(query: DS[], setIsLoading: Dispatch<SetStateAction<boolean>>, setRecommendations: Dispatch<SetStateAction<Recommendations[]>>, setQuery: Dispatch<SetStateAction<DS[]>>){
@@ -19,7 +20,9 @@ export default async function PostDSData(query: DS[], setIsLoading: Dispatch<Set
         setQuery([])
         setRecommendations(MovieData)
     } catch (error) {
-        console.log(error)
+        console.error(error)
+        toast('Gagal Mendapatkan Prediksi')
+        setIsLoading(false)
     }finally{
         setIsLoading(false)
     }
