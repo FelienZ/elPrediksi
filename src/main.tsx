@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <ThemeProvider>
         <Routes>
-        <Route path='/' element={<Template/>}>
+          <Route path='/' element={<Template/>}>
             <Route index element={<Navigate to={'ml'} replace/>}/>
             <Route path='ml' element={<MachineLearning/>}/>
             <Route path='ds' element={<DataScience/>}/>

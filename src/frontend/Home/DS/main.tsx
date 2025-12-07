@@ -1,29 +1,25 @@
 import { motion } from "motion/react";
 import DSForm from "./form";
 import { useEffect, useState } from "react";
-import type { ListMovie } from "../../../utils/types/DS/ListMovie";
 import FetchDSData from "../../../utils/util/fetchDS";
-import { DSData } from "../../../utils/Data/FormData/DataScience";
-import type { DS } from "../../../utils/types/DS/DataScience";
-import { Badge } from "../../../components/ui/badge";
-import { CircleX } from "lucide-react";
 import type { Recommendations } from "../../../utils/types/DS/Recommend";
 import DSResult from "./result";
+import type { Users } from "../../../utils/types/DS/Users";
+import type { ListMovie } from "../../../utils/types/DS/ListMovie";
+import { Badge } from "../../../components/ui/badge";
 
 export default function DataScience(){
     const [open, setOpen] = useState<boolean>(false)
-    const [value, setValue] = useState<DS>(DSData) //value search
-    const [list, setList] = useState<ListMovie[]>([]) //ini buat list dalam Command (hasil fetch)
+    const [value, setValue] = useState<Users>({userId: 0}) //value search
+    const [list, setList] = useState<Users[]>([]) //ini buat list dalam Command (hasil fetch)
     const [isLoading, setIsloading]= useState<boolean>(false)
-    const [query, setQuery] = useState<DS[]>([])
+    const [query, setQuery] = useState<Users>({userId:0}) //simpan final user
+    const [movie, setMovie] = useState<ListMovie>({userId:0, movies: []})
     const [recommendations, setRecommendations] = useState<Recommendations[]>([])
-    function handleDeleteItem(id: string){
-        setQuery(query.filter(q => q.id !== id))
-    }
     //dapetin list
     useEffect(()=>{
-        FetchDSData(value.title, setList)
-    }, [value.title])
+        FetchDSData(value.userId, setList)
+    }, [value.userId])
     return(
         <section className="grid lg:grid-cols-2 place-content-center min-h-screen gap-3">
             <motion.div 
@@ -60,22 +56,20 @@ export default function DataScience(){
                     setValue={setValue} 
                     list={list} 
                     isLoading={isLoading}
+                    setMovie={setMovie}
                     query={query}
                     setQuery={setQuery}
                     setIsLoading={setIsloading}
                     setRecommendations={setRecommendations}
                 />
-                {query.length? (
+                {movie.movies.length? (
                     <div className="flex flex-col gap-3 w-full items-center">
                         <p className="font-bold">Film Pilihan Kamu</p>
                         <div className="grid grid-cols-2 gap-2 w-full">
-                        {query.map(q => (
-                            <div key={q.id} className="flex w-full">
-                                <Badge variant={'outline'} key={q.id} className="flex p-1 px-2 w-full justify-between items-center">
-                                    <p>{q.title}</p>
-                                    <div onClick={()=>handleDeleteItem(q.id)}>
-                                        <CircleX className="size-3"/>
-                                    </div>
+                        {movie.movies.map((m,i)=> (
+                            <div key={i} className="flex w-full">
+                                <Badge variant={'outline'} key={i} className="flex p-1 px-2 w-full justify-between items-center">
+                                    <p>{m}</p>
                                 </Badge>
                             </div>
                             ))}

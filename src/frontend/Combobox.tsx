@@ -17,7 +17,10 @@ import { Button } from "../components/ui/button"
 import { cn } from "../lib/utils"
 import type { DSProps } from "../utils/types/DS/FormProps"
 
-export default function Combobox({open, setOpen, value, setValue, list} : Omit<DSProps, 'isLoading' | 'setIsLoading' | 'setQuery' | 'query' | 'recommendations' | 'setRecommendations'>) {
+export default function Combobox({open, setOpen, value, setValue, list} : Omit<DSProps, 'isLoading' | 'setIsLoading' | 'setQuery' | 'query' | 'recommendations' | 'setRecommendations' | 'setMovie'>) {
+  function checkNumber(v: number): number{
+        return isNaN(v) ? 0 : v
+    }
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -27,33 +30,33 @@ export default function Combobox({open, setOpen, value, setValue, list} : Omit<D
           aria-expanded={open}
           className="w-full justify-between"
         >
-          {value.title !==''
-            ? list.find((l) => l.title === value.title)?.title
-            : "Search for Movie..."}
+          {checkNumber(value.userId) !== 0 ? (
+            `User-${value.userId}`
+          ): 'Search for User...'}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput value={value?.title} onValueChange={(val)=>setValue({...value, title:val})} placeholder="Search Movie..." className="h-9" />
+          <CommandInput onValueChange={(val)=>setValue({...value, userId:Number(val)})} placeholder="Search User..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No Movie found.</CommandEmpty>
+            <CommandEmpty>No Match User Found.</CommandEmpty>
             <CommandGroup>
               {list.map((l) => (
                 <CommandItem
-                  key={l.id}
-                  value={l.title}
+                  key={`user-${l}`}
+                  value={l.toString()}
                   className="mb-1"
                   onSelect={(currentValue) => {
-                    setValue({...value, title: currentValue === value.title ? "" : currentValue, id: l.id})
+                    setValue({...value, userId: Number(currentValue)})
                     setOpen(false)
                   }}
                 >
-                  {l.title}
+                  {`user-${l}`}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value.title === l.title ? "opacity-100" : "opacity-0"
+                      value.userId === l.userId ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

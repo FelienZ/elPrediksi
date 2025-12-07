@@ -1,4 +1,6 @@
-export interface ListMovie{
-    id:string,
-    title: string
+import type { Users } from "./Users";
+
+// userid, listMovie
+export interface ListMovie extends Users{
+    movies: string[]
 }

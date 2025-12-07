@@ -20,7 +20,7 @@ export default async function FetchMLData(data: ML, setIsLoading:(v: boolean)=> 
             Turbidity: data.Turbidity.value,
         }
         try {
-            const {data: result} = await axios.post(`${api_url}/predict`, payload)
+            const {data: result} = await axios.post(`http://localhost:5000/predict`, payload)
             setResult(result)
             setIsLoading(false)
         } catch (error) {

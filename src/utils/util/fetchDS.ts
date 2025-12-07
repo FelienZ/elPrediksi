@@ -1,15 +1,15 @@
 import axios from "axios"
 import type { Dispatch, SetStateAction } from "react"
-import type { ListMovie } from "../types/DS/ListMovie"
+import type { Users } from "../types/DS/Users";
 const api_url = import.meta.env.VITE_API2_URL;
 // ini buat ambil data movie title dgn keyword
-export default async function FetchDSData(value: string, setList: Dispatch<SetStateAction<ListMovie[]>>) {
+export default async function FetchDSData(value: number, setList: Dispatch<SetStateAction<Users[]>>) {
     try {
-        const {data: response} = await axios.get(`${api_url}/search?q=${value}`)
-        if(value.length >= 4){
-            setList(response)
+        const {data: response} = await axios.get(`http://localhost:5000/users?q=${value}`)
+        if(!isNaN(value) && value > 0){
+            setList(response.userIds)
         }
-        if(value.length === 0){
+        else{
             setList([])
         }
     } catch (error) {
